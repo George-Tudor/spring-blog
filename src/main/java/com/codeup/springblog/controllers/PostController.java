@@ -19,19 +19,20 @@ public class PostController {
     }
 
     @GetMapping("/posts")
-    public String showPosts(Model model) {
-        Post post1 = new Post("Xbox", "New in the box, $300");
-        Post post2 = new Post("Ipad", "Ipad 2, 16gig, $100");
-        Post post3 = new Post("Laptop", "Old laptop, works, $100");
-        Post post4 = new Post("Nissan Maxima", "1989, Runs well, cold AC, $2000");
-        Post post5 = new Post("Skateboard", "Used, new wheels $30");
-        List<Post> posts = new ArrayList<>();
-        posts.add(post1);
-        posts.add(post2);
-        posts.add(post3);
-        posts.add(post4);
-        posts.add(post5);
-        model.addAttribute("posts", posts);
+    public String showPosts(Model viewModel) {
+//        Post post1 = new Post("Xbox", "New in the box, $300");
+//        Post post2 = new Post("Ipad", "Ipad 2, 16gig, $100");
+//        Post post3 = new Post("Laptop", "Old laptop, works, $100");
+//        Post post4 = new Post("Nissan Maxima", "1989, Runs well, cold AC, $2000");
+//        Post post5 = new Post("Skateboard", "Used, new wheels $30");
+//        List<Post> posts = new ArrayList<>();
+//        posts.add(post1);
+//        posts.add(post2);
+//        posts.add(post3);
+//        posts.add(post4);
+//        posts.add(post5);
+        List<Post> posts = postsDao.findAll();
+        viewModel.addAttribute("posts", posts);
         return "/posts/index";
     }
 
@@ -72,7 +73,11 @@ public class PostController {
         return "New post saved...";
     }
 
-
+    @PostMapping("/posts/{id}/delete")
+    public String deletePost(@PathVariable long id) {
+        postsDao.deleteById(id);
+        return "redirect:/posts";
+    }
 }
 
 
