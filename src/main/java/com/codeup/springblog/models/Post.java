@@ -1,6 +1,7 @@
 package com.codeup.springblog.models;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "posts")
@@ -66,5 +67,8 @@ public class Post {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public void setImages(List<PostImage> images) {
     }
 }
