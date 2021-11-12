@@ -124,6 +124,7 @@ public class SpringBlogApplicationTests {
         // setup similar to creating a post with csrf and session
         // expect redirection
 
+
         // test post delete
         // setup similar to creating a post with csrf and session
         // expect redirection
